@@ -1,0 +1,5 @@
+steps:
+- bash: build/scripts/auth/sfdxurl/store/DevHub-login.sh
+  env:
+    SFDX_LOGIN_URL: "$(SFDX_LOGIN_URL)"
+  displayName: Authorize a Dev Hub

@@ -1,0 +1,64 @@
+trigger: none
+jobs:
+  - job: Build
+    pool:
+      vmImage: 'Ubuntu-latest'
+    continueOnError: false
+    timeoutInMinutes: 20
+
+    steps:
+        - task: UseNode@1
+          inputs:
+            version: '16.13.0'
+          displayName: Node v16.13.0 Installation
+        - bash: npm install sfdx-cli --global
+          displayName: Install Salesforce CLI
+        - template: templates/login.yml
+        - bash: |
+            ORGNAME=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c10)
+            sfdx force:org:create -s -f config/project-scratch-def.json -a $ORGNAME -w 10
+            echo "##vso[task.setvariable variable=scratchOrgName]$ORGNAME"
+          displayName: Create Scratch Org
+        - bash:
+            sfdx force:source:push -u $(scratchOrgName)
+          displayName: "Push Source to Scratch Org"
+        - bash:
+            sfdx force:user:password:generate -u $(scratchOrgName)
+          displayName: Generate Password
+        - bash: |
+            USERNAME=$(sfdx force:user:display -u $(scratchOrgName) --json | jq -r '.result.username')
+            echo "##vso[task.setvariable variable=scratchOrgUsername]$USERNAME"
+
+            PASSWORD=$(sfdx force:user:display -u $(scratchOrgName) --json | jq -r '.result.password')
+            echo "##vso[task.setvariable variable=scratchOrgPassword]$PASSWORD"
+
+            LOGINURL=$(sfdx force:user:display -u $(scratchOrgName) --json | jq -r '.result.loginUrl')
+            echo "##vso[task.setvariable variable=scratchOrgLoginUrl]$LOGINURL"
+          displayName: Retrieve Username and Password
+        - powershell: |
+            $body = @"
+            {
+              "comments": [
+                {
+                  "parentCommentId": 0,
+                  "content": "| USERNAME | PASSWORD | URL |  
+            |-----------|:-----------:|-----------:|  
+            | $(scratchOrgUsername) | $(scratchOrgPassword) | $(scratchOrgLoginUrl) |  ",
+                  "commentType": "system"
+                }
+              ],
+              "status": "active"
+            }
+            "@
+            $url = "https://dev.azure.com/2manydigits/2ManyDigits/_apis/git/repositories/72c55da2-b13b-4c41-a322-4b0ae383f697/pullRequests/$(System.PullRequest.PullRequestId)/threads?api-version=6.0"
+            $result = Invoke-RestMethod -Uri $url -Method POST -Headers @{Authorization = "Bearer $(System.AccessToken)"} -Body $Body -ContentType application/json
+          displayName: Post comment on PR
+
+
+
+        # - bash: build/scripts/package/latest-version.sh
+        #   env:
+        #     ACC_LOGIN_URL: "$(ACC_LOGIN_URL)"
+        #   displayName: Get Latest Package Version
+
+        #
