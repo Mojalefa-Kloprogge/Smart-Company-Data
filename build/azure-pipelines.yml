@@ -52,7 +52,7 @@ jobs:
               "status": "active"
             }
             "@
-            $url = "https://dev.azure.com/2manydigits/2ManyDigits/_apis/git/repositories/72c55da2-b13b-4c41-a322-4b0ae383f697/pullRequests/$(System.PullRequest.PullRequestId)/threads?api-version=6.0"
+            $url = "https://dev.azure.com/2manydigits/2ManyDigits/_apis/git/repositories/e5552e11-f2e7-4f5d-a7f9-b7e8a49e27be/pullRequests/$(System.PullRequest.PullRequestId)/threads?api-version=6.0"
             $result = Invoke-RestMethod -Uri $url -Method POST -Headers @{Authorization = "Bearer $(System.AccessToken)"} -Body $Body -ContentType application/json
           displayName: Post comment on PR
 
