@@ -1,7 +1,4 @@
-pr:
-  branches:
-    include:
-    - feature/*
+trigger: none
 jobs:
   - job: Build
     pool:
