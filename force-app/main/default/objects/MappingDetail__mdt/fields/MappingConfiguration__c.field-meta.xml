@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
     <label>Mapping Configuration</label>
-    <referenceTo>Mapping_Configuration__mdt</referenceTo>
+    <referenceTo>MappingConfiguration__mdt</referenceTo>
     <relationshipLabel>Mapping Details</relationshipLabel>
     <relationshipName>Mapping_Details</relationshipName>
     <required>false</required>
