@@ -3,7 +3,7 @@
         {
             "path": "force-app",
             "default": true,
-            "package": "SmartCompanyDatav2",
+            "package": "SmartCompanyDataV3",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT"
         }
@@ -12,6 +12,7 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "53.0",
     "packageAliases": {
-        "SmartCompanyDatav2": "0Ho7T000000CaRHSA0"
+        "SmartCompanyDataV3": "0Ho7T000000CaRbSAK",
+        "SmartCompanyDataV3@0.1.0-1": "04t7T000000kZgKQAU"
     }
 }
