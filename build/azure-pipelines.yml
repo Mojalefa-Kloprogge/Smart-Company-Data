@@ -20,7 +20,7 @@ jobs:
             echo "##vso[task.setvariable variable=scratchOrgName]$ORGNAME"
           displayName: Create Scratch Org
         - bash: |
-            sfdx force:package:version:create --package SmartCompanyDataV3 --path force-app --installationkey 2ManyDigits --wait 10 || exit 1
+            sfdx force:package:version:create -f config/project-scratch-def.json --package SmartCompanyDataV3 --path force-app --installationkey 2ManyDigits --wait 10 || exit 1
             latestVersion=$(sfdx force:package:version:list -p SmartCompanyDataV3 -o CreatedDate --concise | tail -1 | awk '{print $3}')
             sfdx force:package:install --wait 10 --publishwait 10 --package $latestVersion -u $(scratchOrgName) --installationkey 2ManyDigits --noprompt
           displayName: "Push Source to Scratch Org"
