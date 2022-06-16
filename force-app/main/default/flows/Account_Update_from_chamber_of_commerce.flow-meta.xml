@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>get_SObjectType</name>
+        <label>get SObjectType</label>
+        <locationX>710</locationX>
+        <locationY>278</locationY>
+        <actionName>GetSObjectTypeInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Check_numbers</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>idList</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>SObjectType</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Update_CoC_Data</name>
         <label>Update CoC Data</label>
         <locationX>710</locationX>
-        <locationY>1070</locationY>
+        <locationY>1190</locationY>
         <actionName>UpdateCoCDataAction</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -42,7 +64,7 @@
         <name>Assign_Branchnumber</name>
         <label>Assign Branchnumber</label>
         <locationX>644</locationX>
-        <locationY>518</locationY>
+        <locationY>638</locationY>
         <assignmentItems>
             <assignToReference>isBranch</assignToReference>
             <operator>Assign</operator>
@@ -65,7 +87,7 @@
         <name>Assign_CoCNumber</name>
         <label>Assign CoCNumber</label>
         <locationX>908</locationX>
-        <locationY>518</locationY>
+        <locationY>638</locationY>
         <assignmentItems>
             <assignToReference>isBranch</assignToReference>
             <operator>Assign</operator>
@@ -95,7 +117,7 @@
         <name>Assign_from_lwc</name>
         <label>Assign from lwc</label>
         <locationX>380</locationX>
-        <locationY>638</locationY>
+        <locationY>758</locationY>
         <assignmentItems>
             <assignToReference>identifier</assignToReference>
             <operator>Assign</operator>
@@ -126,7 +148,7 @@
         <name>Check_numbers</name>
         <label>Check numbers</label>
         <locationX>710</locationX>
-        <locationY>278</locationY>
+        <locationY>398</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>No_Branchnumber_or_Chamber_of_Commerce</name>
@@ -199,7 +221,7 @@
         <name>Is_Changed</name>
         <label>Is Changed</label>
         <locationX>314</locationX>
-        <locationY>1430</locationY>
+        <locationY>1550</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Changed</name>
@@ -271,7 +293,7 @@
         <name>Is_Something_Selected</name>
         <label>Is Something Selected</label>
         <locationX>248</locationX>
-        <locationY>518</locationY>
+        <locationY>638</locationY>
         <defaultConnector>
             <targetReference>Assign_from_lwc</targetReference>
         </defaultConnector>
@@ -297,7 +319,7 @@
         <name>Was_Update_Success</name>
         <label>Was Update Success</label>
         <locationX>710</locationX>
-        <locationY>1190</locationY>
+        <locationY>1310</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Success</name>
@@ -368,7 +390,7 @@
         <locationY>158</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_numbers</targetReference>
+            <targetReference>get_SObjectType</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -386,7 +408,7 @@
         <name>Get_Account_After_Update</name>
         <label>Get Account After Update</label>
         <locationX>314</locationX>
-        <locationY>1310</locationY>
+        <locationY>1430</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Changed</targetReference>
@@ -407,7 +429,7 @@
         <name>After_Update_Fail</name>
         <label>After Update Fail</label>
         <locationX>842</locationX>
-        <locationY>1310</locationY>
+        <locationY>1430</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -423,7 +445,7 @@
         <name>After_Update_Success_Changed</name>
         <label>After Update Success_Changed</label>
         <locationX>50</locationX>
-        <locationY>1550</locationY>
+        <locationY>1670</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -439,7 +461,7 @@
         <name>CoCSuggestionsScreen</name>
         <label>Chamber of Commerce Suggestions Screen</label>
         <locationX>710</locationX>
-        <locationY>950</locationY>
+        <locationY>1070</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -485,7 +507,7 @@
         <name>Has_Branch_Screen</name>
         <label>Has Branch Screen</label>
         <locationX>644</locationX>
-        <locationY>398</locationY>
+        <locationY>518</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -504,7 +526,7 @@
         <name>Has_Chamber_of_Commerce_Screen</name>
         <label>Has Chamber of Commerce Screen</label>
         <locationX>908</locationX>
-        <locationY>398</locationY>
+        <locationY>518</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -523,7 +545,7 @@
         <name>Screen_After_Update_Not_Changed</name>
         <label>Screen After Update Not Changed</label>
         <locationX>314</locationX>
-        <locationY>1550</locationY>
+        <locationY>1670</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -539,7 +561,7 @@
         <name>Search_Chamber_of_Commerce</name>
         <label>Search Chamber of Commerce</label>
         <locationX>248</locationX>
-        <locationY>398</locationY>
+        <locationY>518</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -613,6 +635,13 @@
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>SObjectType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>
