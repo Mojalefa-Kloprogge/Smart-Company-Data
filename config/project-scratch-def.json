@@ -14,19 +14,7 @@
         },
         "languageSettings": {
             "enableTranslationWorkbench": true,
-            "defaultLanguage": "en_US",
-            "languages": {
-                "language": [
-                    {
-                        "active": true,
-                        "name": "en_US"
-                    },
-                    {
-                        "active": true,
-                        "name": "nl_NL"
-                    }
-                ]
-            }
+            "enableEndUserLanguages": true
         }
     }
 }
