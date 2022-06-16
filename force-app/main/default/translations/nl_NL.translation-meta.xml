@@ -126,53 +126,6 @@ Neem contact op met uw adminstrator voor meer informatie.</label>
         </flows>
         <fullName>Account_Update_from_chamber_of_commerce</fullName>
     </flowDefinitions>
-    <prompts>
-        <name>SalesCoreQuoteAdminCpq</name>
-        <promptVersions>
-            <name>Offertebeheer naar CPQ in Sales Core</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>FieldServiceHolidayManagement</name>
-        <promptVersions>
-            <name>Uren van vrije dagen plannen</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>CDPOnboardingInAppGuidance</name>
-        <promptVersions>
-            <name>InApp-begeleiding voor CDP Onboarding</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>tabletFullWidthGA</name>
-        <promptVersions>
-            <name>TabletFullWidthGA</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesHVSDialer</name>
-        <promptVersions>
-            <name>Sales HVS Dialer</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>EinsteinPredictionBuilderSetupPagePrompt</name>
-        <promptVersions>
-            <name>Aanwijzing voor set-uppagina van Einstein Voorspellingensamensteller</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>IAGFeatureAdoption</name>
-        <promptVersions>
-            <name>Acceptatie van IAG-voorziening - stap 1</name>
-            <stepNumber>1</stepNumber>
-        </promptVersions>
-        <promptVersions>
-            <name>Acceptatie van IAG-voorziening - stap 2</name>
-            <stepNumber>2</stepNumber>
-        </promptVersions>
-    </prompts>
     <quickActions>
         <label><!-- LogACall --></label>
         <name>LogACall</name>
