@@ -134,4 +134,13 @@
         <shortDescription>CoC_LWC_Searchlabel</shortDescription>
         <value>Companyname</value>
     </labels>
+    <labels>
+        <fullName>CoC_No_Mapping_Configuration_Available</fullName>
+        <categories>Flow, COC, Metadata</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CoC_No_Mapping_Configuration_Available</shortDescription>
+        <value>There is no Mapping Configuration available for this SObject. 
+Please contact your administrator for more information.</value>
+    </labels>
 </CustomLabels>
