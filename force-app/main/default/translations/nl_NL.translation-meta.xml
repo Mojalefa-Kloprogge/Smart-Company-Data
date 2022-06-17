@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
-        <label><!-- CoC_LWC_Col_COCVALUE --></label>
+        <label>Waarde uit de KvK</label>
         <name>CoCLWCColCOCVALUE</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_CURRENTVALUE --></label>
+        <label>Huidige waarde</label>
         <name>CoCLWCColCURRENTVALUE</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_FIELDNAME --></label>
+        <label>Veldnaam</label>
         <name>CoCLWCColFIELDNAME</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_Flow_Has_Registrations --></label>
+        <label>Let op! Dit account heeft actieve registraties. Vergeet deze niet te controleren.</label>
         <name>CoC_Flow_Has_Registrations</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_Active --></label>
+        <label>Actief</label>
         <name>CoC_LWC_Col_Active</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_City --></label>
+        <label>Stad</label>
         <name>CoC_LWC_Col_City</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_CoCNumber --></label>
+        <label>KVK nummer</label>
         <name>CoC_LWC_Col_CoCNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_EstNumber --></label>
+        <label>Vestigings nummer</label>
         <name>CoC_LWC_Col_EstNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_Ext --></label>
+        <label>Toevoeging</label>
         <name>CoC_LWC_Col_Ext</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_Main --></label>
+        <label>Hoofdvestiging</label>
         <name>CoC_LWC_Col_Main</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_Name --></label>
+        <label>Naam</label>
         <name>CoC_LWC_Col_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_Number --></label>
+        <label>Huisnummer</label>
         <name>CoC_LWC_Col_Number</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_Postalcode --></label>
+        <label>Postcode</label>
         <name>CoC_LWC_Col_Postalcode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Col_Street --></label>
+        <label>Straat</label>
         <name>CoC_LWC_Col_Street</name>
     </customLabels>
     <customLabels>
@@ -61,11 +61,11 @@
         <name>CoC_LWC_Placeholder</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Results_Title --></label>
+        <label>Zoek resultaten</label>
         <name>CoC_LWC_Results_Title</name>
     </customLabels>
     <customLabels>
-        <label><!-- CoC_LWC_Searchlabel --></label>
+        <label>KVK nummer / Bedrijfsnaam / Adres</label>
         <name>CoC_LWC_Searchlabel</name>
     </customLabels>
     <customLabels>

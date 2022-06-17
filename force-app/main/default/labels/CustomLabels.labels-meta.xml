@@ -2,6 +2,7 @@
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>CoCLWCColCOCVALUE</fullName>
+        <categories>LWC,COC,search,table</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoC_LWC_Col_COCVALUE</shortDescription>
@@ -9,6 +10,7 @@
     </labels>
     <labels>
         <fullName>CoCLWCColCURRENTVALUE</fullName>
+        <categories>LWC,COC,search,table</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoC_LWC_Col_CURRENTVALUE</shortDescription>
@@ -16,7 +18,7 @@
     </labels>
     <labels>
         <fullName>CoCLWCColFIELDNAME</fullName>
-        <categories>LWC, COC</categories>
+        <categories>LWC,COC,search,table</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoC_LWC_Col_FIELDNAME</shortDescription>
