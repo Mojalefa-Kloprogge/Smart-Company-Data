@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label><!-- CoC_LWC_Col_COCVALUE --></label>
+        <name>CoCLWCColCOCVALUE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_CURRENTVALUE --></label>
+        <name>CoCLWCColCURRENTVALUE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_FIELDNAME --></label>
+        <name>CoCLWCColFIELDNAME</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_Flow_Has_Registrations --></label>
+        <name>CoC_Flow_Has_Registrations</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_Active --></label>
+        <name>CoC_LWC_Col_Active</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_City --></label>
+        <name>CoC_LWC_Col_City</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_CoCNumber --></label>
+        <name>CoC_LWC_Col_CoCNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_EstNumber --></label>
+        <name>CoC_LWC_Col_EstNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_Ext --></label>
+        <name>CoC_LWC_Col_Ext</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_Main --></label>
+        <name>CoC_LWC_Col_Main</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_Name --></label>
+        <name>CoC_LWC_Col_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_Number --></label>
+        <name>CoC_LWC_Col_Number</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_Postalcode --></label>
+        <name>CoC_LWC_Col_Postalcode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Col_Street --></label>
+        <name>CoC_LWC_Col_Street</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Placeholder --></label>
+        <name>CoC_LWC_Placeholder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Results_Title --></label>
+        <name>CoC_LWC_Results_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CoC_LWC_Searchlabel --></label>
+        <name>CoC_LWC_Searchlabel</name>
+    </customLabels>
+    <customLabels>
+        <label>Er zijn geen metadata configuratie voor dit SObject type beschikbaar.
+Neem contact op met uw adminstrator voor meer informatie.</label>
+        <name>CoC_No_Mapping_Configuration_Available</name>
+    </customLabels>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>After_Update_Fail_Text</name>
+                </fields>
+                <name>After_Update_Fail</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>After_Update_Text</name>
+                </fields>
+                <name>After_Update_Success_Changed</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>CoCSuggestions</name>
+                </fields>
+                <name>CoCSuggestionsScreen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Has_Branch_Screen_Text</name>
+                </fields>
+                <name>Has_Branch_Screen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Has_Chamber_of_Commerce_Screen_Text</name>
+                </fields>
+                <name>Has_Chamber_of_Commerce_Screen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>CoC_No_Mapping_Found</name>
+                </fields>
+                <name>No_Mapping_Configuration_Found</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>After_Update_Not_Changed_Text</name>
+                </fields>
+                <name>Screen_After_Update_Not_Changed</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Search_Chamber_of_Commerce_Screen</name>
+                </fields>
+                <name>Search_Chamber_of_Commerce</name>
+            </screens>
+        </flows>
+        <fullName>Account_Update_from_chamber_of_commerce</fullName>
+    </flowDefinitions>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- Screen Flows --></description>
+        <label><!-- Screen Flows --></label>
+        <name>screen_flows_prebuilt_crt</name>
+        <sections>
+            <label><!-- Flow Interview Log Entries --></label>
+            <name>Flow Interview Log Entries</name>
+        </sections>
+        <sections>
+            <label><!-- Flow Interview Logs --></label>
+            <name>Flow Interview Logs</name>
+        </sections>
+    </reportTypes>
+</Translations>
