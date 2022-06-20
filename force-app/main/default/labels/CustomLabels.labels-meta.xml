@@ -145,4 +145,12 @@
         <value>There is no Mapping Configuration available for this SObject. 
 Please contact your administrator for more information.</value>
     </labels>
+    <labels>
+        <fullName>CoC_GetSObjectByFieldList_Error</fullName>
+        <categories>COC, APEX, Metadata</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CoC_GetSObjectByFieldList_Error</shortDescription>
+        <value>The SObject could not be queried. Please check the SObject and/or metadata for correct configuration.</value>
+    </labels>
 </CustomLabels>

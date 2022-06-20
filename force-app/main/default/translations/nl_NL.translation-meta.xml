@@ -69,6 +69,10 @@
         <name>CoC_LWC_Searchlabel</name>
     </customLabels>
     <customLabels>
+        <label>Het SObject is niet gevonden. Controleer de instellingen voor het SObject en de metadata nogmaals.</label>
+        <name>CoC_GetSObjectByFieldList_Error</name>
+    </customLabels>
+    <customLabels>
         <label>Er zijn geen metadata configuratie voor dit SObject type beschikbaar.
 Neem contact op met uw adminstrator voor meer informatie.</label>
         <name>CoC_No_Mapping_Configuration_Available</name>
