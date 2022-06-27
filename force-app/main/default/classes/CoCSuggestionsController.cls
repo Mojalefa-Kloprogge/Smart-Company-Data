@@ -4,35 +4,25 @@ public with sharing class CoCSuggestionsController {
         if(request == null){
             return new CocSuggestion();
         }
-
+        
         CoCAccountRepository accountRepository = new CoCAccountRepository();
         UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2(), accountRepository);
         
-        Account acc = updater.getCoCData(request.accountId, request.identifier, request.isBranch, request.isMainBranch);
-        
-        Account originalAccount = accountRepository.getAccountById(request.accountId);
-
+        CoCProfile profile = updater.getCoCData(request.accountId, request.identifier, request.isBranch, request.isMainBranch);
         CoCSuggestion sugg = new CoCSuggestion();
-        sugg.recordId = acc.Id;
 
-        Schema.FieldSet cocFieldSet = Schema.SObjectType.Account.fieldSets.getMap().get('ChamberOfCommerceFields');
+        SObject originalRecord = SmartCompanyDataUtils.getSObjectRecordByFieldList(request.accountId, request.sObjectType, SmartCompanyDataUtils.retrieveFieldsFromMappingDetails(request.mappingDetail));
+        
+        DescribeUtils describeUtils = new DescribeUtils();
 
-        for(Schema.FieldSetMember cocFSM: cocFieldSet.getFields()){
+        for (MappingDetail__mdt mappingDetail : request.mappingDetail){
             CoCSuggestionsController.CoCSuggestionField suggestionField = new CoCSuggestionsController.CoCSuggestionField();
-            String fieldName = cocFSM.getFieldPath();
-            suggestionField.fieldName = cocFSM.getSObjectField().getDescribe().getLabel();
-            suggestionField.fieldValueCurrent = cocFSM.getType() != Schema.DisplayType.STRING ? String.valueOf(originalAccount.get(fieldName)) : (String) originalAccount.get(fieldName);
-            suggestionField.fieldValueSuggested = cocFSM.getType() != Schema.DisplayType.STRING ? String.valueOf(acc.get(fieldName)) : (String) acc.get(fieldName);
+            suggestionField.fieldName = describeUtils.getFieldLabelBySObjectAndFieldname(request.sObjectType, mappingDetail.SalesforceField__c);
+            suggestionField.fieldValueCurrent = String.valueOf(originalRecord.get(mappingDetail.SalesforceField__c)); 
+            Object suggestedFieldValue = profile.getProfileInformationByFieldname(mappingDetail.SmartCompanyDataField__c); 
+            suggestionField.fieldValueSuggested = suggestedFieldValue instanceOf String ? (String)suggestedFieldValue : String.valueOf(suggestedFieldValue);
             sugg.fields.add(suggestionField);
-        }
-
-        for(CoCSuggestionsController.CoCSuggestionField field : sugg.fields){
-            if(String.isNotBlank(field.fieldValueCurrent)){
-                field.fieldValueCurrent = field.fieldValueCurrent.trim();
-            }
-            if(String.isNotBlank(field.fieldValueSuggested)){
-                field.fieldValueSuggested = field.fieldValueSuggested.trim();
-            }
+            System.debug(LoggingLevel.error, 'suggestion: ' + sugg);
         }
         
         return sugg;

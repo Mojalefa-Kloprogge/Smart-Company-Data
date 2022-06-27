@@ -16,6 +16,28 @@ public with sharing class CoCProfile {
         return updateAccount(acc);
     }
 
+    public Object getProfileInformationByFieldname(String fieldname) {
+        if (fieldname.equals('identifier')) {
+            return identifier;
+        } else if (fieldname.equals('branchIdentifier')) {
+            return branchIdentifier;
+        } else if (fieldname.equals('rsin')) {
+            return rsin;
+        } else if (fieldname.equals('name')) {
+            return name;
+        } else if (fieldname.equals('isBranch')) {
+            return isBranch;
+        } else if (fieldname.equals('isMainBranch')) {
+            return isMainBranch;
+        } else if (fieldname.equals('legalForm')) {
+            return legalForm;
+        } else if (fieldname.equals('deregistrationDate')) {
+            return deregistrationDate;
+        } else {
+            return null;
+        }
+    }
+
     public Account updateAccount(Account acc) {
         if (this.name != null) {
             acc.Name = this.name;
@@ -58,4 +80,6 @@ public with sharing class CoCProfile {
             Integer.valueOf(str.substring(6, 8))
         );
     }
+
+
 }
