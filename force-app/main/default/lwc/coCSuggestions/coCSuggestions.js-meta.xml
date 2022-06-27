@@ -9,8 +9,11 @@
         <targetConfig targets="lightning__FlowScreen">
             <property name="accountId" type="String"/>
             <property name="identifier" type="String"/>
+            <property name="sObjectType" type="String"/>
             <property name="isBranch" type="Boolean"/>
             <property name="isMainBranch" type="Boolean"/>
+            <propertyType name='mappingDetail' extends='SObject' label='mappingDetail' description='mappingDetail'/>
+            <property name='mappingDetail' type='{mappingDetail[]}' label='mappingDetail' description='mappingDetail'/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

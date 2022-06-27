@@ -4,7 +4,7 @@ public with sharing class SmartCompanyDataUtils {
     }
 
     public static SObject getSObjectRecordByFieldList(Id recordId, String sObjectType, List<String> fieldList){
-        String query = 'SELECT Id, Name';
+        String query = 'SELECT Id ';
         for(String field : fieldList){        
             query += ', ' + field;
         }
@@ -18,5 +18,13 @@ public with sharing class SmartCompanyDataUtils {
             throw e;
         }
         return sObjectList.get(0);
+    }
+
+    public static List<String> retrieveFieldsFromMappingDetails(List<MappingDetail__mdt> mappingDetails){
+        List<String> fields = new List<String>();
+        for(MappingDetail__mdt mappingDetail : mappingDetails){
+            fields.add(mappingDetail.SalesforceField__c);
+        }
+        return fields;
     }
 }

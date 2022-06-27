@@ -14,7 +14,9 @@ export default class CoCSuggestions extends LightningElement {
     @api accountId;
     @api identifier;
     @api isBranch;
+    @api sObjectType;
     @api isMainBranch;
+    @api mappingDetail = [];
     data;
     error;
     columns = columns;
@@ -24,9 +26,10 @@ export default class CoCSuggestions extends LightningElement {
             accountId: this.accountId,
             identifier: this.identifier,
             isBranch: this.isBranch,
-            isMainBranch: this.isMainBranch
+            mappingDetail: this.mappingDetail,
+            isMainBranch: this.isMainBranch,
+            sObjectType: this.sObjectType
         };
-
         getAccountInfoFromCoC({ request: parameterObject })
             .then((result) => {
                 result.fields.forEach(ele => {

@@ -14,9 +14,8 @@ public inherited sharing class UpdateCoCData {
         return sr;
     }
 
-    public Account getCoCData(Id accountId, String identifier, Boolean isBranch, Boolean isMainBranch){
-        Account acc = accountRepository.getAccountById(accountId);
+    public CoCProfile getCoCData(Id accountId, String identifier, Boolean isBranch, Boolean isMainBranch){
         CoCProfile profile = dataProvider.getProfile(identifier, isBranch, isMainBranch);
-        return profile.updateAccount(acc);
+        return profile;
     }
 }
