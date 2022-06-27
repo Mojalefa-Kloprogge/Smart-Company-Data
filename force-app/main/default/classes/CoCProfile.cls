@@ -31,11 +31,33 @@ public with sharing class CoCProfile {
             return isMainBranch;
         } else if (fieldname.equals('legalForm')) {
             return legalForm;
+        } else if (fieldname.equals('city')) {
+            if (this.addressMap.containskey('bezoekadres')) {
+                return this.addressMap.get('bezoekadres').city.toLowerCase().capitalize();
+            }
+        } else if (fieldname.equals('street')) {
+            if (this.addressMap.containskey('bezoekadres')) {
+                String street;
+                street = this.addressMap.get('bezoekadres').street + ' ' + this.addressMap.get('bezoekadres').houseNumber;
+                    if (this.addressMap.get('bezoekadres').houseNumberAddition != null) {
+                        street += ' ' + this.addressMap.get('bezoekadres').houseNumberAddition;
+                    }
+                return street;
+            }
+        } else if (fieldname.equals('postalCode')) {
+            if (this.addressMap.containsKey('bezoekadres')) {
+                return this.addressMap.get('bezoekadres').postalCode;
+            }
+        } else if (fieldname.equals('country')) {
+            if (this.addressMap.containsKey('bezoekadres')) {
+                return this.addressMap.get('bezoekadres').country;
+            }
         } else if (fieldname.equals('deregistrationDate')) {
             return deregistrationDate;
         } else {
             return null;
         }
+        return null;
     }
 
     public Account updateAccount(Account acc) {
