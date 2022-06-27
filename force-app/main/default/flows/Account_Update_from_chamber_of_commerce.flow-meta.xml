@@ -537,6 +537,10 @@
         </connector>
         <fields>
             <name>CoCSuggestions</name>
+            <dataTypeMappings>
+                <typeName>mappingDetail</typeName>
+                <typeValue>MappingDetail__mdt</typeValue>
+            </dataTypeMappings>
             <extensionName>c:coCSuggestions</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
@@ -561,6 +565,18 @@
                 <name>isMainBranch</name>
                 <value>
                     <elementReference>isMainBranch</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>mappingDetail</name>
+                <value>
+                    <elementReference>Get_Mapping_Detail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sObjectType</name>
+                <value>
+                    <elementReference>SObjectType</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
