@@ -34,12 +34,6 @@
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
-            <name>accountId</name>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>identifier</name>
             <value>
                 <elementReference>identifier</elementReference>
@@ -55,6 +49,24 @@
             <name>isMainBranch</name>
             <value>
                 <elementReference>isMainBranch</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mappingDetail</name>
+            <value>
+                <elementReference>Get_Mapping_Detail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sObjectType</name>
+            <value>
+                <elementReference>SObjectType</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -544,12 +556,6 @@
             <extensionName>c:coCSuggestions</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>accountId</name>
-                <value>
-                    <elementReference>recordId</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
                 <name>identifier</name>
                 <value>
                     <elementReference>identifier</elementReference>
@@ -571,6 +577,12 @@
                 <name>mappingDetail</name>
                 <value>
                     <elementReference>Get_Mapping_Detail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>recordId</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>

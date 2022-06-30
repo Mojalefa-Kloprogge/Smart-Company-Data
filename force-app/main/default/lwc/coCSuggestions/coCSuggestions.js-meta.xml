@@ -7,7 +7,7 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property name="accountId" type="String"/>
+            <property name="recordId" type="String"/>
             <property name="identifier" type="String"/>
             <property name="sObjectType" type="String"/>
             <property name="isBranch" type="Boolean"/>

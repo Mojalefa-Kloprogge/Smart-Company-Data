@@ -28,7 +28,7 @@ public inherited sharing class UpdateCoCDataActionTest {
 
         List<UpdateCoCDataAction.UpdateCoCDataRequest> reqList = new List<UpdateCoCDataAction.UpdateCoCDataRequest>();
         UpdateCoCDataAction.UpdateCoCDataRequest req = new UpdateCoCDataAction.UpdateCoCDataRequest();
-        req.accountId = acc.Id;
+        req.recordId = acc.Id;
         req.isBranch = false;
         req.identifier = '1234';
         reqList.add(req);

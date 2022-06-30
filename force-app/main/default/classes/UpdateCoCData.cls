@@ -1,16 +1,15 @@
 public inherited sharing class UpdateCoCData {
     private IDataProvider dataProvider;
-    private ICoCAccountRepository accountRepository;
 
     public UpdateCoCData(IDataProvider dataProvider, ICoCAccountRepository accountRepository) {
         this.dataProvider = dataProvider;
-        this.accountRepository = accountRepository;
     }
 
-    public DataBase.SaveResult updateAccount(Id accountId, String identifier, Boolean isBranch, Boolean isMainBranch) {
-        Account acc = accountRepository.getAccountById(accountId);
+    public DataBase.SaveResult updateRecord(Id recordId, String identifier, Boolean isBranch, Boolean isMainBranch, List<MappingDetail__mdt> mappingDetail, String sObjectType) {
+        List<String> fieldList = SmartCompanyDataUtils.retrieveFieldsFromMappingDetails(mappingDetail);
+        SObject originalRecord = SmartCompanyDataUtils.getSObjectRecordByFieldList(recordId, sObjectType, fieldList);
         CoCProfile profile = dataProvider.getProfile(identifier, isBranch, isMainBranch);
-        DataBase.SaveResult sr = accountRepository.updateAccount(profile.updateAccount(acc));
+        DataBase.SaveResult sr = profile.updateRecord(originalRecord, mappingDetail);
         return sr;
     }
 

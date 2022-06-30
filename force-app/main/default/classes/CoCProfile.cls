@@ -13,7 +13,7 @@ public with sharing class CoCProfile {
 
     public Account toAccount() {
         Account acc = new Account();
-        return updateAccount(acc);
+        return acc;
     }
 
     public Object getProfileInformationByFieldname(String fieldname) {
@@ -60,39 +60,71 @@ public with sharing class CoCProfile {
         return null;
     }
 
-    public Account updateAccount(Account acc) {
-        if (this.name != null) {
-            acc.Name = this.name;
-        }
-        if (this.identifier != null) {
-            acc.Chamber_of_Commerce__c = this.identifier;
-        }
-        if (this.branchIdentifier != null) {
-            acc.Branch_Number__c = this.branchIdentifier;
-        }
-        if (this.isBranch != null) {
-            acc.Is_Branch__c = this.isBranch;
-        }
-        if (this.isMainBranch != null) {
-            acc.Is_Main_Branch__c = this.isMainBranch;
-        }
-        if (this.addressMap.containskey('bezoekadres')) {
-            acc.BillingCity = this.addressMap.get('bezoekadres').city.toLowerCase().capitalize();
-            acc.BillingStreet = this.addressMap.get('bezoekadres').street + ' ' + this.addressMap.get('bezoekadres').houseNumber;
-            if (this.addressMap.get('bezoekadres').houseNumberAddition != null) {
-                acc.BillingStreet += ' ' + this.addressMap.get('bezoekadres').houseNumberAddition;
+    public Database.SaveResult updateRecord(SObject obj, List<MappingDetail__mdt> details){
+        String street;
+        String houseNumber;
+        String houseNumberAddition;
+        String mappedStreetField;
+
+        for(MappingDetail__mdt md : details){
+            String scdField = md.SmartCompanyDataField__c;
+            switch on scdField {
+                 when 'identifier' {
+                    obj.put(md.SalesforceField__c, this.identifier);
+                } when 'branchIdentifier' {
+                    obj.put(md.SalesforceField__c, this.branchIdentifier);
+                } when 'rsin' {
+                    obj.put(md.SalesforceField__c, this.rsin);
+                } when 'name' {
+                    obj.put(md.SalesforceField__c, this.name);
+                } when 'isBranch' {
+                    obj.put(md.SalesforceField__c, this.isBranch);
+                } when 'isMainBranch' {
+                    obj.put(md.SalesforceField__c, this.isMainBranch);
+                } when 'legalForm' {                    
+                    obj.put(md.SalesforceField__c, this.legalForm);
+                } when 'deregistrationDate' {                  
+                    obj.put(md.SalesforceField__c, this.deregistrationDate);
+                } when 'street' {
+                    if (this.addressMap.containskey('bezoekadres')) {
+                        mappedStreetField = md.SalesforceField__c;
+                        street = this.addressMap.get('bezoekadres').street.toLowerCase().capitalize();
+                    }
+                } when 'houseNumber' {
+                    if (this.addressMap.containskey('bezoekadres')) {
+                        houseNumber = this.addressMap.get('bezoekadres').houseNumber.toLowerCase().capitalize();
+                    }
+                } when 'houseNumberAddition' {
+                    if (this.addressMap.containskey('bezoekadres')) {
+                        houseNumberAddition = this.addressMap.get('bezoekadres').houseNumberAddition.toLowerCase().capitalize();
+                    }
+                } when 'postalCode' {
+                    if (this.addressMap.containskey('bezoekadres')) {
+                        obj.put(md.SalesforceField__c, this.addressMap.get('bezoekadres').postalCode.toLowerCase().capitalize());
+                    }
+                } when 'country' {
+                    if (this.addressMap.containskey('bezoekadres')) {
+                        obj.put(md.SalesforceField__c, this.addressMap.get('bezoekadres').country.toLowerCase().capitalize());
+                    }
+                } when 'city' {
+                    if (this.addressMap.containskey('bezoekadres'))  {
+                        obj.put(md.SalesforceField__c, this.addressMap.get('bezoekadres').city.toLowerCase().capitalize());
+                    } 
+                } when else {}
             }
-            acc.BillingPostalCode = this.addressMap.get('bezoekadres').postalCode;
-            acc.BillingCountry = this.addressMap.get('bezoekadres').country;
+            if(String.isNotBlank(street)){ 
+                String entireStreet = street;
+                if(String.isNotBlank(houseNumber)){
+                    entireStreet += ' ' + houseNumber;
+                }
+                if(String.isNotBlank(houseNumberAddition)){
+                    entireStreet += ' ' + houseNumberAddition;
+                }
+                obj.put(mappedStreetField, entireStreet);
+            }
         }
-        if (this.legalForm != null) {
-            acc.Legal_form__c = this.legalForm;
-        }
-        if (this.deregistrationDate != null && this.deregistrationDate.length() == 8) {
-            acc.Date_of_Termination_Chamber_of_Commerce__c = formatDate(this.deregistrationDate);
-        }
-        acc.Last_Chamber_of_Commerce_Update__c = System.now();
-        return acc;
+        Database.SaveResult res = Database.update(obj);
+        return res;
     }
 
     public Date formatDate(String str) {
@@ -102,6 +134,4 @@ public with sharing class CoCProfile {
             Integer.valueOf(str.substring(6, 8))
         );
     }
-
-
 }
