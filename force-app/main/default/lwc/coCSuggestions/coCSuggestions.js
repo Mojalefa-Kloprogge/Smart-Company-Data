@@ -11,7 +11,7 @@ const columns = [
     { label: lblCoCFieldValue, fieldName: 'fieldValueSuggested', type: 'text', cellAttributes: {class: {fieldName: `format`},alignment: `left`}  }
 ];
 export default class CoCSuggestions extends LightningElement {
-    @api accountId;
+    @api recordId;
     @api identifier;
     @api isBranch;
     @api sObjectType;
@@ -23,7 +23,7 @@ export default class CoCSuggestions extends LightningElement {
 
     connectedCallback() {
         let parameterObject = {
-            accountId: this.accountId,
+            recordId: this.recordId,
             identifier: this.identifier,
             isBranch: this.isBranch,
             mappingDetail: this.mappingDetail,

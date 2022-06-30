@@ -8,10 +8,10 @@ public with sharing class CoCSuggestionsController {
         CoCAccountRepository accountRepository = new CoCAccountRepository();
         UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2(), accountRepository);
         
-        CoCProfile profile = updater.getCoCData(request.accountId, request.identifier, request.isBranch, request.isMainBranch);
+        CoCProfile profile = updater.getCoCData(request.recordId, request.identifier, request.isBranch, request.isMainBranch);
         CoCSuggestion sugg = new CoCSuggestion();
 
-        SObject originalRecord = SmartCompanyDataUtils.getSObjectRecordByFieldList(request.accountId, request.sObjectType, SmartCompanyDataUtils.retrieveFieldsFromMappingDetails(request.mappingDetail));
+        SObject originalRecord = SmartCompanyDataUtils.getSObjectRecordByFieldList(request.recordId, request.sObjectType, SmartCompanyDataUtils.retrieveFieldsFromMappingDetails(request.mappingDetail));
         
         DescribeUtils describeUtils = new DescribeUtils();
 

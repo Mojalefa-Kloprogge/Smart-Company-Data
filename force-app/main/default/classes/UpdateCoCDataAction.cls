@@ -6,20 +6,24 @@ public inherited sharing class UpdateCoCDataAction {
 
         UpdateCoCDataRequest request = requests.get(0);
 
-        DataBase.SaveResult sr = updater.updateAccount(request.accountId, request.identifier, request.isBranch, request.isMainBranch);
+        DataBase.SaveResult sr = updater.updateRecord(request.recordId, request.identifier, request.isBranch, request.isMainBranch, request.mappingDetail, request.sObjectType);
         resultList.add(new UpdateCoCDataResult(sr.isSuccess(), sr.getErrors().toString()));
         return resultList;
     }
 
     public class UpdateCoCDataRequest {
         @InvocableVariable
-        public Id accountId;
+        public Id recordId;
         @InvocableVariable
         public String identifier;
         @InvocableVariable
         public Boolean isBranch;
         @InvocableVariable
         public Boolean isMainBranch;
+        @InvocableVariable
+        public List<MappingDetail__mdt> mappingDetail;
+        @InvocableVariable
+        public String sObjectType;
     }
 
     public class UpdateCoCDataResult {
