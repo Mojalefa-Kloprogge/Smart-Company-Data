@@ -1,7 +1,7 @@
 public inherited sharing class UpdateCoCDataAction {
     @InvocableMethod(label='Update CoC Data' description='Updates the CoC data on an account based on the Id')
     public static List<UpdateCoCDataResult> UpdateCoCDataAction(List<UpdateCoCDataRequest> requests) {
-        UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2(), new CoCAccountRepository());
+        UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2());
         List<UpdateCoCDataResult> resultList = new List<UpdateCoCDataResult>();
 
         UpdateCoCDataRequest request = requests.get(0);

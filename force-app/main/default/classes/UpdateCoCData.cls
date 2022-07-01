@@ -1,7 +1,7 @@
 public inherited sharing class UpdateCoCData {
     private IDataProvider dataProvider;
 
-    public UpdateCoCData(IDataProvider dataProvider, ICoCAccountRepository accountRepository) {
+    public UpdateCoCData(IDataProvider dataProvider) {
         this.dataProvider = dataProvider;
     }
 

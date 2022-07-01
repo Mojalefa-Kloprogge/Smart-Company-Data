@@ -5,8 +5,7 @@ public with sharing class CoCSuggestionsController {
             return new CocSuggestion();
         }
         
-        CoCAccountRepository accountRepository = new CoCAccountRepository();
-        UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2(), accountRepository);
+        UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2());
         
         CoCProfile profile = updater.getCoCData(request.recordId, request.identifier, request.isBranch, request.isMainBranch);
         CoCSuggestion sugg = new CoCSuggestion();
