@@ -21,7 +21,6 @@ public with sharing class CoCSuggestionsController {
             Object suggestedFieldValue = profile.getProfileInformationByFieldname(mappingDetail.SmartCompanyDataField__c); 
             suggestionField.fieldValueSuggested = suggestedFieldValue instanceOf String ? (String)suggestedFieldValue : String.valueOf(suggestedFieldValue);
             sugg.fields.add(suggestionField);
-            System.debug(LoggingLevel.error, 'suggestion: ' + sugg);
         }
         
         return sugg;
