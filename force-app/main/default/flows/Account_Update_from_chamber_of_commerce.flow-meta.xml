@@ -5,7 +5,7 @@
         <name>Get_Record_CoC_Details</name>
         <label>Get Record CoC Details</label>
         <locationX>512</locationX>
-        <locationY>758</locationY>
+        <locationY>638</locationY>
         <actionName>GetRecordCoCDetailsInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -69,7 +69,7 @@
         <name>get_SObjectType</name>
         <label>get SObjectType</label>
         <locationX>875</locationX>
-        <locationY>278</locationY>
+        <locationY>158</locationY>
         <actionName>GetSObjectTypeInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -91,7 +91,7 @@
         <name>Update_CoC_Data</name>
         <label>Update CoC Data</label>
         <locationX>512</locationX>
-        <locationY>1670</locationY>
+        <locationY>1550</locationY>
         <actionName>UpdateCoCDataAction</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -141,7 +141,7 @@
         <name>Assign_Branchnumber</name>
         <label>Assign Branchnumber</label>
         <locationX>446</locationX>
-        <locationY>1118</locationY>
+        <locationY>998</locationY>
         <assignmentItems>
             <assignToReference>isBranch</assignToReference>
             <operator>Assign</operator>
@@ -164,7 +164,7 @@
         <name>Assign_from_lwc</name>
         <label>Assign from lwc</label>
         <locationX>182</locationX>
-        <locationY>1238</locationY>
+        <locationY>1118</locationY>
         <assignmentItems>
             <assignToReference>identifier</assignToReference>
             <operator>Assign</operator>
@@ -194,7 +194,7 @@
         <name>Check_If_Mapping_Exists</name>
         <label>Check If Mapping Exists</label>
         <locationX>875</locationX>
-        <locationY>518</locationY>
+        <locationY>398</locationY>
         <defaultConnector>
             <targetReference>No_Mapping_Configuration_Found</targetReference>
         </defaultConnector>
@@ -220,7 +220,7 @@
         <name>Check_numbers</name>
         <label>Check numbers</label>
         <locationX>512</locationX>
-        <locationY>878</locationY>
+        <locationY>758</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>No_Branchnumber_or_Chamber_of_Commerce</name>
@@ -293,7 +293,7 @@
         <name>Is_Something_Selected</name>
         <label>Is Something Selected</label>
         <locationX>50</locationX>
-        <locationY>1118</locationY>
+        <locationY>998</locationY>
         <defaultConnector>
             <targetReference>Assign_from_lwc</targetReference>
         </defaultConnector>
@@ -319,7 +319,7 @@
         <name>Was_Update_Success</name>
         <label>Was Update Success</label>
         <locationX>512</locationX>
-        <locationY>1790</locationY>
+        <locationY>1670</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Success</name>
@@ -379,31 +379,10 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_Account</name>
-        <label>Get Account</label>
-        <locationX>875</locationX>
-        <locationY>158</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>get_SObjectType</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Account</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Mapping_Configuration</name>
         <label>Get Mapping Configuration</label>
         <locationX>875</locationX>
-        <locationY>398</locationY>
+        <locationY>278</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_If_Mapping_Exists</targetReference>
@@ -424,7 +403,7 @@
         <name>Get_Mapping_Detail</name>
         <label>Get Mapping Detail</label>
         <locationX>512</locationX>
-        <locationY>638</locationY>
+        <locationY>518</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Record_CoC_Details</targetReference>
@@ -445,7 +424,7 @@
         <name>After_Update_Fail</name>
         <label>After Update Fail</label>
         <locationX>512</locationX>
-        <locationY>1910</locationY>
+        <locationY>1790</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -461,7 +440,7 @@
         <name>AfterUpdateSuccess</name>
         <label>After Update Success</label>
         <locationX>248</locationX>
-        <locationY>1910</locationY>
+        <locationY>1790</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -477,7 +456,7 @@
         <name>CoCSuggestionsScreen</name>
         <label>Chamber of Commerce Suggestions Screen</label>
         <locationX>512</locationX>
-        <locationY>1550</locationY>
+        <locationY>1430</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -539,7 +518,7 @@
         <name>Has_Branch_Screen</name>
         <label>Has Branch Screen</label>
         <locationX>446</locationX>
-        <locationY>998</locationY>
+        <locationY>878</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -558,7 +537,7 @@
         <name>Has_Chamber_of_Commerce_Screen</name>
         <label>Has Chamber of Commerce Screen</label>
         <locationX>710</locationX>
-        <locationY>998</locationY>
+        <locationY>878</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -578,7 +557,7 @@
         <name>No_Mapping_Configuration_Found</name>
         <label>No Mapping Configuration Found</label>
         <locationX>1238</locationX>
-        <locationY>638</locationY>
+        <locationY>518</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -594,7 +573,7 @@
         <name>Search_Chamber_of_Commerce</name>
         <label>Search Chamber of Commerce</label>
         <locationX>50</locationX>
-        <locationY>998</locationY>
+        <locationY>878</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -622,7 +601,7 @@
         <locationX>749</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Account</targetReference>
+            <targetReference>get_SObjectType</targetReference>
         </connector>
     </start>
     <status>Active</status>
