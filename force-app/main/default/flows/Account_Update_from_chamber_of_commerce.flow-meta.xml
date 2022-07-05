@@ -465,7 +465,7 @@
         <expression>{!Get_Account.Name} &amp; &quot; &quot; &amp; SUBSTITUTE({!Get_Account.BillingPostalCode},&quot; &quot;,&quot;&quot;)</expression>
     </formulas>
     <interviewLabel>Account Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Account - Update From Chamber of Commerce</label>
+    <label>Update From Chamber of Commerce</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -676,7 +676,7 @@
         </connector>
         <fields>
             <name>Has_Branch_Screen_Text</name>
-            <fieldText>&lt;p&gt;Updating using branchnumber: {!Get_Account.Branch_Number__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Updating using branchnumber: {!branchNumber}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -695,7 +695,7 @@
         </connector>
         <fields>
             <name>Has_Chamber_of_Commerce_Screen_Text</name>
-            <fieldText>&lt;p&gt;Updating using chamber of commerce number: {!Get_Account.Chamber_of_Commerce__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Updating using chamber of commerce number: {!identifier}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
