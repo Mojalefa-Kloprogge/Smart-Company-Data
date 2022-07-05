@@ -17,7 +17,7 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
             createRequest(endpoint, environment, 'searchv2', '?handelsnaam=' + searchTerm.replaceAll(' ', '+') + '&inclusiefInactieveRegistraties=true&aantal=100')
         );
         String body = resp.getBody();
-
+        
         KVKSearchResponse parsedResp = (KVKSearchResponse) JSON.deserialize(body, KVKSearchResponse.class);
         result.addAll(createCoCDataFromSearchResponse(parsedResp));
         

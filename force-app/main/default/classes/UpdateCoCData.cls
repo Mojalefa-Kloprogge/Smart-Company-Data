@@ -13,7 +13,7 @@ public inherited sharing class UpdateCoCData {
         return sr;
     }
 
-    public CoCProfile getCoCData(Id accountId, String identifier, Boolean isBranch, Boolean isMainBranch){
+    public CoCProfile getCoCData(String identifier, Boolean isBranch, Boolean isMainBranch){
         CoCProfile profile = dataProvider.getProfile(identifier, isBranch, isMainBranch);
         return profile;
     }

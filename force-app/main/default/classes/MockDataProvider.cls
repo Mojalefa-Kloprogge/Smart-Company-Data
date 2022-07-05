@@ -27,7 +27,7 @@ public inherited sharing class MockDataProvider implements IDataProvider {
         address.street = 'Keizerstraat';
         address.postalCode = '4811 HL';
 
-        result.addressMap.put('vestigingsadres', address);
+        result.addressMap.put('bezoekadres', address);
 
         return result;
     }

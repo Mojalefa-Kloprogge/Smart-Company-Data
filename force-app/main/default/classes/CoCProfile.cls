@@ -11,11 +11,6 @@ public with sharing class CoCProfile {
     public Map<String, CoCAddress> addressMap;
     public List<String> tradeNames;
 
-    public Account toAccount() {
-        Account acc = new Account();
-        return acc;
-    }
-
     public Object getProfileInformationByFieldname(String fieldname) {
         if (fieldname.equals('identifier')) {
             return identifier;
@@ -54,8 +49,6 @@ public with sharing class CoCProfile {
             }
         } else if (fieldname.equals('deregistrationDate')) {
             return deregistrationDate;
-        } else {
-            return null;
         }
         return null;
     }
@@ -125,13 +118,5 @@ public with sharing class CoCProfile {
         }
         Database.SaveResult res = Database.update(obj);
         return res;
-    }
-
-    public Date formatDate(String str) {
-        return Date.newInstance(
-            Integer.valueOf(str.substring(0, 4)),
-            Integer.valueOf(str.substring(4, 6)),
-            Integer.valueOf(str.substring(6, 8))
-        );
     }
 }

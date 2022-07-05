@@ -7,7 +7,7 @@ public with sharing class CoCSuggestionsController {
         
         UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2());
         
-        CoCProfile profile = updater.getCoCData(request.recordId, request.identifier, request.isBranch, request.isMainBranch);
+        CoCProfile profile = updater.getCoCData(request.identifier, request.isBranch, request.isMainBranch);
         CoCSuggestion sugg = new CoCSuggestion();
 
         SObject originalRecord = SmartCompanyDataUtils.getSObjectRecordByFieldList(request.recordId, request.sObjectType, SmartCompanyDataUtils.retrieveFieldsFromMappingDetails(request.mappingDetail));
