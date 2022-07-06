@@ -87,12 +87,6 @@ Neem contact op met uw adminstrator voor meer informatie.</label>
             </screens>
             <screens>
                 <fields>
-                    <name>After_Update_Text</name>
-                </fields>
-                <name>After_Update_Success_Changed</name>
-            </screens>
-            <screens>
-                <fields>
                     <name>CoCSuggestions</name>
                 </fields>
                 <name>CoCSuggestionsScreen</name>
@@ -114,12 +108,6 @@ Neem contact op met uw adminstrator voor meer informatie.</label>
                     <name>CoC_No_Mapping_Found</name>
                 </fields>
                 <name>No_Mapping_Configuration_Found</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>After_Update_Not_Changed_Text</name>
-                </fields>
-                <name>Screen_After_Update_Not_Changed</name>
             </screens>
             <screens>
                 <fields>

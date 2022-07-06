@@ -4,8 +4,8 @@
         <description>Retrieve de current records CoC details to pass trough to the flow</description>
         <name>Get_Record_CoC_Details</name>
         <label>Get Record CoC Details</label>
-        <locationX>710</locationX>
-        <locationY>758</locationY>
+        <locationX>512</locationX>
+        <locationY>638</locationY>
         <actionName>GetRecordCoCDetailsInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -68,8 +68,8 @@
     <actionCalls>
         <name>get_SObjectType</name>
         <label>get SObjectType</label>
-        <locationX>1073</locationX>
-        <locationY>278</locationY>
+        <locationX>875</locationX>
+        <locationY>158</locationY>
         <actionName>GetSObjectTypeInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -90,8 +90,8 @@
     <actionCalls>
         <name>Update_CoC_Data</name>
         <label>Update CoC Data</label>
-        <locationX>710</locationX>
-        <locationY>1670</locationY>
+        <locationX>512</locationX>
+        <locationY>1550</locationY>
         <actionName>UpdateCoCDataAction</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -140,8 +140,8 @@
     <assignments>
         <name>Assign_Branchnumber</name>
         <label>Assign Branchnumber</label>
-        <locationX>644</locationX>
-        <locationY>1118</locationY>
+        <locationX>446</locationX>
+        <locationY>998</locationY>
         <assignmentItems>
             <assignToReference>isBranch</assignToReference>
             <operator>Assign</operator>
@@ -161,40 +161,10 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_CoCNumber</name>
-        <label>Assign CoCNumber</label>
-        <locationX>908</locationX>
-        <locationY>1118</locationY>
-        <assignmentItems>
-            <assignToReference>isBranch</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>identifier</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Get_Account.Chamber_of_Commerce__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>isMainBranch</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Get_Account.Is_Main_Branch__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>CoCSuggestionsScreen</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Assign_from_lwc</name>
         <label>Assign from lwc</label>
-        <locationX>380</locationX>
-        <locationY>1238</locationY>
+        <locationX>182</locationX>
+        <locationY>1118</locationY>
         <assignmentItems>
             <assignToReference>identifier</assignToReference>
             <operator>Assign</operator>
@@ -223,8 +193,8 @@
     <decisions>
         <name>Check_If_Mapping_Exists</name>
         <label>Check If Mapping Exists</label>
-        <locationX>1073</locationX>
-        <locationY>518</locationY>
+        <locationX>875</locationX>
+        <locationY>398</locationY>
         <defaultConnector>
             <targetReference>No_Mapping_Configuration_Found</targetReference>
         </defaultConnector>
@@ -249,8 +219,8 @@
         <description>This decision checks if a chamber of commerce number or a branch number is available</description>
         <name>Check_numbers</name>
         <label>Check numbers</label>
-        <locationX>710</locationX>
-        <locationY>878</locationY>
+        <locationX>512</locationX>
+        <locationY>758</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>No_Branchnumber_or_Chamber_of_Commerce</name>
@@ -320,82 +290,10 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_Changed</name>
-        <label>Is Changed</label>
-        <locationX>314</locationX>
-        <locationY>2030</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Changed</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_Account.Name</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Account_After_Update.Name</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_Account.BillingCity</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Account_After_Update.BillingCity</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_Account.BillingPostalCode</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Account_After_Update.BillingPostalCode</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_Account.BillingStreet</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Account_After_Update.BillingStreet</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_Account.BillingCountry</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Account_After_Update.BillingCountry</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_Account.Legal_Form__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Account_After_Update.Legal_Form__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>After_Update_Success_Changed</targetReference>
-            </connector>
-            <label>Changed</label>
-        </rules>
-        <rules>
-            <name>Not_Changed</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_Account.Name</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Account_After_Update.Name</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Screen_After_Update_Not_Changed</targetReference>
-            </connector>
-            <label>Not Changed</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_Something_Selected</name>
         <label>Is Something Selected</label>
-        <locationX>248</locationX>
-        <locationY>1118</locationY>
+        <locationX>50</locationX>
+        <locationY>998</locationY>
         <defaultConnector>
             <targetReference>Assign_from_lwc</targetReference>
         </defaultConnector>
@@ -420,8 +318,8 @@
     <decisions>
         <name>Was_Update_Success</name>
         <label>Was Update Success</label>
-        <locationX>710</locationX>
-        <locationY>1790</locationY>
+        <locationX>512</locationX>
+        <locationY>1670</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Success</name>
@@ -434,7 +332,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Account_After_Update</targetReference>
+                <targetReference>AfterUpdateSuccess</targetReference>
             </connector>
             <label>Success</label>
         </rules>
@@ -459,13 +357,8 @@
         <dataType>String</dataType>
         <expression>{!$Label.CoC_Flow_Has_Registrations}</expression>
     </formulas>
-    <formulas>
-        <name>searchTermFormula</name>
-        <dataType>String</dataType>
-        <expression>{!Get_Account.Name} &amp; &quot; &quot; &amp; SUBSTITUTE({!Get_Account.BillingPostalCode},&quot; &quot;,&quot;&quot;)</expression>
-    </formulas>
-    <interviewLabel>Account Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Account - Update From Chamber of Commerce</label>
+    <interviewLabel>Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update From Chamber of Commerce</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -486,52 +379,10 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_Account</name>
-        <label>Get Account</label>
-        <locationX>1073</locationX>
-        <locationY>158</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>get_SObjectType</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Account</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Account_After_Update</name>
-        <label>Get Account After Update</label>
-        <locationX>314</locationX>
-        <locationY>1910</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Is_Changed</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Account</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Mapping_Configuration</name>
         <label>Get Mapping Configuration</label>
-        <locationX>1073</locationX>
-        <locationY>398</locationY>
+        <locationX>875</locationX>
+        <locationY>278</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_If_Mapping_Exists</targetReference>
@@ -551,8 +402,8 @@
     <recordLookups>
         <name>Get_Mapping_Detail</name>
         <label>Get Mapping Detail</label>
-        <locationX>710</locationX>
-        <locationY>638</locationY>
+        <locationX>512</locationX>
+        <locationY>518</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Record_CoC_Details</targetReference>
@@ -572,30 +423,30 @@
     <screens>
         <name>After_Update_Fail</name>
         <label>After Update Fail</label>
-        <locationX>842</locationX>
-        <locationY>1910</locationY>
+        <locationX>512</locationX>
+        <locationY>1790</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>After_Update_Fail_Text</name>
-            <fieldText>&lt;p&gt;Account Update Failed: &lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;{!Update_CoC_Data.message}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Update Failed: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;{!Update_CoC_Data.message}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>After_Update_Success_Changed</name>
-        <label>After Update Success_Changed</label>
-        <locationX>50</locationX>
-        <locationY>2150</locationY>
+        <name>AfterUpdateSuccess</name>
+        <label>After Update Success</label>
+        <locationX>248</locationX>
+        <locationY>1790</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
-            <name>After_Update_Text</name>
-            <fieldText>&lt;p&gt;Account updated. {!ActiveRegistrationsText}&lt;/p&gt;</fieldText>
+            <name>After_Update_Text_0</name>
+            <fieldText>&lt;p&gt;Record updated&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -604,8 +455,8 @@
     <screens>
         <name>CoCSuggestionsScreen</name>
         <label>Chamber of Commerce Suggestions Screen</label>
-        <locationX>710</locationX>
-        <locationY>1550</locationY>
+        <locationX>512</locationX>
+        <locationY>1430</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -666,8 +517,8 @@
     <screens>
         <name>Has_Branch_Screen</name>
         <label>Has Branch Screen</label>
-        <locationX>644</locationX>
-        <locationY>998</locationY>
+        <locationX>446</locationX>
+        <locationY>878</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -676,7 +527,7 @@
         </connector>
         <fields>
             <name>Has_Branch_Screen_Text</name>
-            <fieldText>&lt;p&gt;Updating using branchnumber: {!Get_Account.Branch_Number__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Updating using branchnumber: {!branchNumber}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -685,17 +536,17 @@
     <screens>
         <name>Has_Chamber_of_Commerce_Screen</name>
         <label>Has Chamber of Commerce Screen</label>
-        <locationX>908</locationX>
-        <locationY>998</locationY>
+        <locationX>710</locationX>
+        <locationY>878</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Assign_CoCNumber</targetReference>
+            <targetReference>CoCSuggestionsScreen</targetReference>
         </connector>
         <fields>
             <name>Has_Chamber_of_Commerce_Screen_Text</name>
-            <fieldText>&lt;p&gt;Updating using chamber of commerce number: {!Get_Account.Chamber_of_Commerce__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Updating using chamber of commerce number: {!identifier}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -705,8 +556,8 @@
         <description>No Mapping Configuration Found</description>
         <name>No_Mapping_Configuration_Found</name>
         <label>No Mapping Configuration Found</label>
-        <locationX>1436</locationX>
-        <locationY>638</locationY>
+        <locationX>1238</locationX>
+        <locationY>518</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -719,26 +570,10 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>Screen_After_Update_Not_Changed</name>
-        <label>Screen After Update Not Changed</label>
-        <locationX>314</locationX>
-        <locationY>2150</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>After_Update_Not_Changed_Text</name>
-            <fieldText>&lt;p&gt;No changes found in Chamber of Commerce&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
         <name>Search_Chamber_of_Commerce</name>
         <label>Search Chamber of Commerce</label>
-        <locationX>248</locationX>
-        <locationY>998</locationY>
+        <locationX>50</locationX>
+        <locationY>878</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -749,12 +584,6 @@
             <name>Search_Chamber_of_Commerce_Screen</name>
             <extensionName>c:searchCoCData</extensionName>
             <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>searchTerm</name>
-                <value>
-                    <elementReference>searchTermFormula</elementReference>
-                </value>
-            </inputParameters>
             <inputParameters>
                 <name>recordId</name>
                 <value>
@@ -769,10 +598,10 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>947</locationX>
+        <locationX>749</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Account</targetReference>
+            <targetReference>get_SObjectType</targetReference>
         </connector>
     </start>
     <status>Active</status>
