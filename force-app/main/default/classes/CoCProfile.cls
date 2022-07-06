@@ -54,10 +54,6 @@ public with sharing class CoCProfile {
     }
 
     public Database.SaveResult updateRecord(SObject obj, List<MappingDetail__mdt> details){
-        String street;
-        String houseNumber;
-        String houseNumberAddition;
-        String mappedStreetField;
 
         for(MappingDetail__mdt md : details){
             String scdField = md.SmartCompanyDataField__c;
@@ -80,20 +76,16 @@ public with sharing class CoCProfile {
                     obj.put(md.SalesforceField__c, this.deregistrationDate);
                 } when 'street' {
                     if (this.addressMap.containskey('bezoekadres')) {
-                        mappedStreetField = md.SalesforceField__c;
-                        street = this.addressMap.get('bezoekadres').street.toLowerCase().capitalize();
-                    }
-                } when 'houseNumber' {
-                    if (this.addressMap.containskey('bezoekadres')) {
-                        houseNumber = this.addressMap.get('bezoekadres').houseNumber.toLowerCase().capitalize();
-                    }
-                } when 'houseNumberAddition' {
-                    if (this.addressMap.containskey('bezoekadres')) {
-                        houseNumberAddition = this.addressMap.get('bezoekadres').houseNumberAddition.toLowerCase().capitalize();
+                        String street;
+                        street = this.addressMap.get('bezoekadres').street + ' ' + this.addressMap.get('bezoekadres').houseNumber;
+                            if (this.addressMap.get('bezoekadres').houseNumberAddition != null) {
+                                street += ' ' + this.addressMap.get('bezoekadres').houseNumberAddition;
+                            }
+                        obj.put(md.SalesforceField__c, street);
                     }
                 } when 'postalCode' {
                     if (this.addressMap.containskey('bezoekadres')) {
-                        obj.put(md.SalesforceField__c, this.addressMap.get('bezoekadres').postalCode.toLowerCase().capitalize());
+                        obj.put(md.SalesforceField__c, this.addressMap.get('bezoekadres').postalCode);
                     }
                 } when 'country' {
                     if (this.addressMap.containskey('bezoekadres')) {
@@ -104,16 +96,6 @@ public with sharing class CoCProfile {
                         obj.put(md.SalesforceField__c, this.addressMap.get('bezoekadres').city.toLowerCase().capitalize());
                     } 
                 } when else {}
-            }
-            if(String.isNotBlank(street)){ 
-                String entireStreet = street;
-                if(String.isNotBlank(houseNumber)){
-                    entireStreet += ' ' + houseNumber;
-                }
-                if(String.isNotBlank(houseNumberAddition)){
-                    entireStreet += ' ' + houseNumberAddition;
-                }
-                obj.put(mappedStreetField, entireStreet);
             }
         }
         Database.SaveResult res = Database.update(obj);
