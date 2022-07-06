@@ -16,7 +16,7 @@ jobs:
         - template: templates/login.yml
         - bash: |
             ORGNAME=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c10)
-            sfdx force:org:create -s -f config/project-scratch-def.json -a $ORGNAME -w 10
+            sfdx force:org:create -s -f config/project-scratch-def.json -a $ORGNAME -d 3 -w 10
             echo "##vso[task.setvariable variable=scratchOrgName]$ORGNAME"
           displayName: Create Scratch Org
         - bash: |
