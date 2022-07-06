@@ -418,6 +418,8 @@
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>MappingDetail__mdt</object>
+        <sortField>SortOrderBy__c</sortField>
+        <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <screens>
