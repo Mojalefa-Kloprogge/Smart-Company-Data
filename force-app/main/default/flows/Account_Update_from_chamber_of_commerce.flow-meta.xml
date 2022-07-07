@@ -606,7 +606,7 @@
             <targetReference>get_SObjectType</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>accountIds</name>
         <dataType>String</dataType>
