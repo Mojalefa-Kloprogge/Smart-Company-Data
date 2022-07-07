@@ -118,7 +118,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoC_LWC_Placeholder</shortDescription>
-        <value>Merk-Echt</value>
+        <value>Fill in the company name.</value>
     </labels>
     <labels>
         <fullName>CoC_LWC_Results_Title</fullName>

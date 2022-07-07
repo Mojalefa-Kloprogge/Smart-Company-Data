@@ -14,4 +14,8 @@
         <field>SmartCompanyDataField__c</field>
         <value xsi:type="xsd:string">postalCode</value>
     </values>
+    <values>
+        <field>SortOrderBy__c</field>
+        <value xsi:type="xsd:double">3.0</value>
+    </values>
 </CustomMetadata>
