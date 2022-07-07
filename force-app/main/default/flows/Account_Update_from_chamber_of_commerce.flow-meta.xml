@@ -101,7 +101,7 @@
         <inputParameters>
             <name>identifier</name>
             <value>
-                <elementReference>identifier</elementReference>
+                <elementReference>BranchNumberORCoCNumber</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -154,6 +154,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>branchNumber</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>isMainBranch</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </assignmentItems>
         <connector>
@@ -357,6 +364,11 @@
         <dataType>String</dataType>
         <expression>{!$Label.CoC_Flow_Has_Registrations}</expression>
     </formulas>
+    <formulas>
+        <name>BranchNumberORCoCNumber</name>
+        <dataType>String</dataType>
+        <expression>IF( NOT( ISBLANK( {!branchNumber} ) ), {!branchNumber}, {!identifier} )</expression>
+    </formulas>
     <interviewLabel>Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update From Chamber of Commerce</label>
     <processMetadataValues>
@@ -476,7 +488,7 @@
             <inputParameters>
                 <name>identifier</name>
                 <value>
-                    <elementReference>identifier</elementReference>
+                    <elementReference>BranchNumberORCoCNumber</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
