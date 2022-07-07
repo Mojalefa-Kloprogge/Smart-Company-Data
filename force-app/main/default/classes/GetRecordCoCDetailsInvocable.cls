@@ -18,6 +18,9 @@ public with sharing class GetRecordCoCDetailsInvocable {
                 if(md.SmartCompanyDataField__c == 'isMainBranch')   {
                     details.isMainBranch = (Boolean)originalRecord.get(md.SalesforceField__c);
                 }
+                if(md.SmartCompanyDataField__c == 'branchIdentifier')   {
+                    details.branchNumber = (String)originalRecord.get(md.SalesforceField__c);
+                }
             }
             detailList.add(details);
         }
