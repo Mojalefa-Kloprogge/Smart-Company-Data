@@ -16,6 +16,8 @@ public with sharing class CoCProfile {
             return identifier;
         } else if (fieldname.equals('branchIdentifier')) {
             return branchIdentifier;
+        } else if (fieldname.equals('tradenames')) {
+            return String.join(this.tradeNames, ', ');	
         } else if (fieldname.equals('rsin')) {
             return rsin;
         } else if (fieldname.equals('name')) {
@@ -60,6 +62,8 @@ public with sharing class CoCProfile {
             switch on scdField {
                  when 'identifier' {
                     obj.put(md.SalesforceField__c, this.identifier);
+                } when 'tradenames' {
+                    obj.put(md.SalesforceField__c, String.join(this.tradeNames, ', '));
                 } when 'branchIdentifier' {
                     obj.put(md.SalesforceField__c, this.branchIdentifier);
                 } when 'rsin' {

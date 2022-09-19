@@ -31,6 +31,11 @@
                 <label>name</label>
             </value>
             <value>
+                <fullName>tradenames</fullName>
+                <default>false</default>
+                <label>tradenames</label>
+            </value>
+            <value>
                 <fullName>isBranch</fullName>
                 <default>false</default>
                 <label>isBranch</label>
