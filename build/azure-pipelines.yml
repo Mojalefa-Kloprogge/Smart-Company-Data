@@ -42,23 +42,24 @@ jobs:
             LOGINURL=$(sfdx force:user:display -u $(scratchOrgName) --json | jq -r '.result.loginUrl')
             echo "##vso[task.setvariable variable=scratchOrgLoginUrl]$LOGINURL"
           displayName: Retrieve Username and Password
-        - powershell: |
-            $body = @"
+        - bash: |
+            generate_post_data()
+            {
+              cat <<EOF
             {
               "comments": [
-                {
-                  "parentCommentId": 0,
-                  "content": "| USERNAME | PASSWORD | URL |  
+                {"parentCommentId": 0,
+                "content": "| USERNAME | PASSWORD | URL |  
             |-----------|:-----------:|-----------:|  
             | $(scratchOrgUsername) | $(scratchOrgPassword) | $(scratchOrgLoginUrl) |  ",
-                  "commentType": "system"
+                 "commentType": "system"
                 }
               ],
               "status": "active"
             }
-            "@
-            $url = "https://dev.azure.com/2manydigits/2ManyDigits/_apis/git/repositories/e5552e11-f2e7-4f5d-a7f9-b7e8a49e27be/pullRequests/$(System.PullRequest.PullRequestId)/threads?api-version=6.0"
-            $result = Invoke-RestMethod -Uri $url -Method POST -Headers @{Authorization = "Bearer $(System.AccessToken)"} -Body $Body -ContentType application/json
+            EOF
+            }
+            curl -X POST -H "Authorization: Bearer $(System.AccessToken)" -H "Content-Type: application/json" -d "$(generate_post_data)" https://dev.azure.com/2manydigits/2ManyDigits/_apis/git/repositories/72c55da2-b13b-4c41-a322-4b0ae383f697/pullRequests/$(System.PullRequest.PullRequestId)/threads?api-version=6.0
           displayName: Post comment on PR
 
 
