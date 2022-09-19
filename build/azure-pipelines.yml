@@ -5,15 +5,20 @@ jobs:
       vmImage: 'Ubuntu-latest'
     continueOnError: false
     timeoutInMinutes: 20
+    container: salesforce/salesforcedx:latest-full
+
+    variables:
+      - group: 2MD_PROD
+      - name: SFDX_LOGIN_URL
+        value: $[variables.SFDX_AUTH_URL]
+      - name: scratchOrgUsername
+        value: initialValue
 
     steps:
-        - task: UseNode@1
-          inputs:
-            version: '16.13.0'
-          displayName: Node v16.13.0 Installation
-        - bash: npm install sfdx-cli --global
-          displayName: Install Salesforce CLI
         - template: templates/login.yml
+        - bash: |
+            echo 'y' | sfdx plugins:install sfpowerkit
+          displayName: Install sfpowerkit
         - bash: |
             ORGNAME=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c10)
             sfdx force:org:create -s -f config/project-scratch-def.json -a $ORGNAME -d 3 -w 10
