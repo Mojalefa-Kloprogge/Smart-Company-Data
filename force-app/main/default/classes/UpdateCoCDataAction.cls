@@ -7,7 +7,11 @@ public inherited sharing class UpdateCoCDataAction {
         UpdateCoCDataRequest request = requests.get(0);
 
         DataBase.SaveResult sr = updater.updateRecord(request.recordId, request.identifier, request.isBranch, request.isMainBranch, request.mappingDetail, request.sObjectType);
-        resultList.add(new UpdateCoCDataResult(sr.isSuccess(), sr.getErrors().toString()));
+        Set<String> errorMessages = new Set<String>();
+        for(Database.error error:sr.getErrors()){
+            errorMessages.add(error.getMessage());
+        }
+        resultList.add(new UpdateCoCDataResult(sr.isSuccess(), String.join(new List<String>(errorMessages), ',')));
         return resultList;
     }
 

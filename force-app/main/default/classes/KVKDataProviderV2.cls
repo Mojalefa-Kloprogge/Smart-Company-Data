@@ -17,10 +17,10 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
             createRequest(endpoint, environment, 'searchv2', '?handelsnaam=' + searchTerm.replaceAll(' ', '+') + '&inclusiefInactieveRegistraties=true&aantal=100')
         );
         String body = resp.getBody();
-        
-        KVKSearchResponse parsedResp = (KVKSearchResponse) JSON.deserialize(body, KVKSearchResponse.class);
-        result.addAll(createCoCDataFromSearchResponse(parsedResp));
-        
+        if(body != ''){
+            KVKSearchResponse parsedResp = (KVKSearchResponse) JSON.deserialize(body, KVKSearchResponse.class);
+            result.addAll(createCoCDataFromSearchResponse(parsedResp));
+        }
         return result;
     }
 
@@ -122,7 +122,11 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
                 profile.addressMap.put(cocAddress.name, cocAddress);
             }
         }
-        profile.name = kvkBasic.naam;
+        if(kvkBasic.embedded?.hoofdvestiging?.eersteHandelsnaam != null){
+            profile.name = kvkBasic.embedded.hoofdvestiging.eersteHandelsnaam;
+        }else{
+            profile.name = kvkBasic.naam;
+        }
         if (kvkBasic.handelsnamen != null) {
             profile.tradeNames = new List<String>();
             for (KVKHandelsnaam handelsnaam : kvkBasic.handelsnamen) {
@@ -131,7 +135,7 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
         }
         profile.isBranch = kvkBasic.embedded.hoofdvestiging.indCommercieleVestiging.equalsIgnoreCase('Ja');
         profile.isMainBranch = kvkBasic.embedded.hoofdvestiging.indHoofdvestiging.equalsIgnoreCase('Ja');
-        if(kvkBasic.materieleRegistratie.datumEinde != null){
+        if(kvkBasic.materieleRegistratie?.datumEinde != null){
             profile.deregistrationDate = kvkBasic.materieleRegistratie.datumEinde;
         }
         profile.legalForm = kvkBasic.embedded.eigenaar.rechtsvorm;

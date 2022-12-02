@@ -99,10 +99,12 @@ public with sharing class CoCProfile {
                     if (this.addressMap.containskey('bezoekadres'))  {
                         obj.put(md.SalesforceField__c, this.addressMap.get('bezoekadres').city.toLowerCase().capitalize());
                     } 
-                } when else {}
+                } when 'lastupdated' {
+                    obj.put(md.SalesforceField__c, System.now());
+                }when else {}
             }
         }
-        Database.SaveResult res = Database.update(obj);
+        Database.SaveResult res = Database.update(obj, false);
         return res;
     }
 }
