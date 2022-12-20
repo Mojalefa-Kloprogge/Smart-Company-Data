@@ -3,16 +3,17 @@
         {
             "path": "force-app",
             "default": true,
-            "package": "SmartCompanyDataV3",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT"
+            "package": "SmartCompanyData",
+            "versionName": "ver 0.5",
+            "versionNumber": "0.5.0.NEXT",
+            "ancestorVersion": "HIGHEST"
         }
     ],
-    "namespace": "",
+    "namespace": "scd_2md",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "53.0",
+    "sourceApiVersion": "56.0",
     "packageAliases": {
-        "SmartCompanyDataV3": "0Ho7T000000CaRbSAK",
-        "SmartCompanyDataV3@0.1.0-1": "04t7T000000kZgKQAU"
+        "SmartCompanyData": "0HoIV000000001d0AA",
+        "SmartCompanyData@0.5.0-1": "04tIV0000001IkTYAU"
     }
 }
