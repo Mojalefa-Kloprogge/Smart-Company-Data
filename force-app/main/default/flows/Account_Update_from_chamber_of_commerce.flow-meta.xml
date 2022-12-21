@@ -332,10 +332,10 @@
             <name>Success</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Update_CoC_Data.isSuccess</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>Update_CoC_Data</leftValueReference>
+                <operator>StartsWith</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>true</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -347,10 +347,10 @@
             <name>Fail</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Update_CoC_Data.isSuccess</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>Update_CoC_Data</leftValueReference>
+                <operator>StartsWith</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <stringValue>false</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -359,10 +359,11 @@
             <label>Fail</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <formulas>
         <name>ActiveRegistrationsText</name>
         <dataType>String</dataType>
-        <expression>{!$Label.CoC_Flow_Has_Registrations}</expression>
+        <expression>{!$Label.scd_2md__CoC_Flow_Has_Registrations}</expression>
     </formulas>
     <formulas>
         <name>BranchNumberORCoCNumber</name>
@@ -444,7 +445,7 @@
         <allowPause>true</allowPause>
         <fields>
             <name>After_Update_Fail_Text</name>
-            <fieldText>&lt;p&gt;Update Failed: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;{!Update_CoC_Data.message}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Update Failed: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;{!Update_CoC_Data}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -483,7 +484,7 @@
                 <typeName>mappingDetail</typeName>
                 <typeValue>MappingDetail__mdt</typeValue>
             </dataTypeMappings>
-            <extensionName>c:coCSuggestions</extensionName>
+            <extensionName>scd_2md:coCSuggestions</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
                 <name>identifier</name>
@@ -577,7 +578,7 @@
         <allowPause>true</allowPause>
         <fields>
             <name>CoC_No_Mapping_Found</name>
-            <fieldText>&lt;p&gt;{!$Label.CoC_No_Mapping_Configuration_Available}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;{!$Label.scd_2md__CoC_No_Mapping_Configuration_Available}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -596,7 +597,7 @@
         </connector>
         <fields>
             <name>Search_Chamber_of_Commerce_Screen</name>
-            <extensionName>c:searchCoCData</extensionName>
+            <extensionName>scd_2md:searchCoCData</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
                 <name>recordId</name>

@@ -1,6 +1,6 @@
 public inherited sharing class UpdateCoCDataAction {
-    @InvocableMethod(label='Update CoC Data' description='Updates the CoC data on an account based on the Id')
-    public static List<UpdateCoCDataResult> UpdateCoCDataAction(List<UpdateCoCDataRequest> requests) {
+    /*@InvocableMethod(label='Update CoC Data' description='Updates the CoC data on an account based on the Id')
+    global static List<UpdateCoCDataResult> UpdateCoCDataAction(List<UpdateCoCDataRequest> requests) {
         UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2());
         List<UpdateCoCDataResult> resultList = new List<UpdateCoCDataResult>();
 
@@ -12,6 +12,22 @@ public inherited sharing class UpdateCoCDataAction {
             errorMessages.add(error.getMessage());
         }
         resultList.add(new UpdateCoCDataResult(sr.isSuccess(), String.join(new List<String>(errorMessages), ',')));
+        return resultList;
+    }*/
+
+    @InvocableMethod(label='Update CoC Data' description='Updates the CoC data on an account based on the Id')
+    public static List<String> UpdateCoCDataAction(List<UpdateCoCDataRequest> requests) {
+        UpdateCoCData updater = new UpdateCoCData(new KVKDataProviderV2());
+        List<String> resultList = new List<String>();
+
+        UpdateCoCDataRequest request = requests.get(0);
+
+        DataBase.SaveResult sr = updater.updateRecord(request.recordId, request.identifier, request.isBranch, request.isMainBranch, request.mappingDetail, request.sObjectType);
+        Set<String> errorMessages = new Set<String>();
+        for(Database.error error:sr.getErrors()){
+            errorMessages.add(error.getMessage());
+        }
+        resultList.add(sr.isSuccess() + '|' + String.join(new List<String>(errorMessages), ','));
         return resultList;
     }
 

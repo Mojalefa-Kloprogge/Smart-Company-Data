@@ -34,12 +34,14 @@ public inherited sharing class UpdateCoCDataActionTest {
         req.sObjectType = 'Account';
         reqList.add(req);
 
-        List<UpdateCoCDataAction.UpdateCoCDataResult> result;
+        //List<UpdateCoCDataAction.UpdateCoCDataResult> result;
+        List<String> result;
 
         Test.startTest();
         result = UpdateCoCDataAction.UpdateCoCDataAction(reqList);
         Test.stopTest();
 
-        System.assertEquals(true, result.get(0).isSuccess, 'Expected true but found: ' + result.get(0).isSuccess);
+        //System.assertEquals(true, result.get(0).isSuccess, 'Expected true but found: ' + result.get(0).isSuccess);
+        System.assert(result.get(0).startsWithIgnoreCase('true'), 'Expected true in the result but found: ' + result);
     }
 }
