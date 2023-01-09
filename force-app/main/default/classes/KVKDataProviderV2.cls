@@ -102,8 +102,9 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
     private CoCProfile createCoCProfileFromKVKBasic(KVKBasic kvkBasic){
         CoCProfile profile = new CoCProfile();
         profile.identifier = kvkBasic.kvkNummer;
-        profile.branchidentifier = kvkBasic.embedded.hoofdvestiging.vestigingsnummer;
-        if(kvkBasic.embedded.hoofdvestiging.adressen != null){
+        profile.branchidentifier = kvkBasic.embedded?.hoofdvestiging?.vestigingsnummer;
+        
+        if(kvkBasic.embedded?.hoofdvestiging?.adressen != null){
             profile.addressMap = new Map<String, CoCAddress>();
             for (KVKAdres kvkAdres : kvkBasic.embedded.hoofdvestiging.adressen) {
                 CoCAddress cocAddress = new CoCAddress();

@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "bc89ee6f-9755-41e0-81e6-2d74712c13e0",
+		"name": "Smart Company Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21921240"
+	},
+	"item": [
+		{
+			"name": "Search by Term Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "739b85df-2de6-d5b2-69f4-3563e26d2ff5",
+						"type": "text"
+					},
+					{
+						"key": "x-org-id",
+						"value": "00DAU000000XeRj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://smartcompanydata.herokuapp.com/api/companydata/prod/searchv2?handelsnaam=Conservatieve+Liberalen&inclusiefInactieveRegistraties=true&aantal=100",
+					"protocol": "https",
+					"host": [
+						"smartcompanydata",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"companydata",
+						"prod",
+						"searchv2"
+					],
+					"query": [
+						{
+							"key": "handelsnaam",
+							"value": "Conservatieve+Liberalen"
+						},
+						{
+							"key": "inclusiefInactieveRegistraties",
+							"value": "true"
+						},
+						{
+							"key": "aantal",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Basic Profile Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-org-id",
+						"value": "00DAU000000XeRj",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "739b85df-2de6-d5b2-69f4-3563e26d2ff5",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://smartcompanydata.herokuapp.com/api/companydata/prod/basic/81148240",
+					"protocol": "https",
+					"host": [
+						"smartcompanydata",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"companydata",
+						"prod",
+						"basic",
+						"81148240"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api",
+			"value": "739b85df-2de6-d5b2-69f4-3563e26d2ff5",
+			"type": "string"
+		},
+		{
+			"key": "orgId",
+			"value": "00DAU000000XeRj",
+			"type": "string"
+		}
+	]
+}
