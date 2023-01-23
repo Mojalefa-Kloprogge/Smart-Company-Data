@@ -6,12 +6,14 @@ public with sharing class CoCProfile {
     public Boolean isBranch;
     public Boolean isMainBranch;
     public String legalForm;
+    public String extendedLegalform;
     public String deregistrationDate;
 
     public Map<String, CoCAddress> addressMap;
     public List<String> tradeNames;
-
+    
     public Object getProfileInformationByFieldname(String fieldname) {
+
         if (fieldname.equals('identifier')) {
             return identifier;
         } else if (fieldname.equals('branchIdentifier')) {
@@ -71,9 +73,17 @@ public with sharing class CoCProfile {
                 } when 'name' {
                     obj.put(md.SalesforceField__c, this.name);
                 } when 'isBranch' {
+                    if (this.isBranch != null) {
                     obj.put(md.SalesforceField__c, this.isBranch);
+                    } else {
+                        obj.put(md.SalesforceField__c, false);
+                    }
                 } when 'isMainBranch' {
-                    obj.put(md.SalesforceField__c, this.isMainBranch);
+                    if (this.isBranch != null) {
+                        obj.put(md.SalesforceField__c, this.isMainBranch);
+                    } else {
+                        obj.put(md.SalesforceField__c, false);
+                    }
                 } when 'legalForm' {                    
                     obj.put(md.SalesforceField__c, this.legalForm);
                 } when 'deregistrationDate' {                  
@@ -101,7 +111,7 @@ public with sharing class CoCProfile {
                     } 
                 } when 'lastupdated' {
                     obj.put(md.SalesforceField__c, System.now());
-                }when else {}
+                } when else {}
             }
         }
         Database.SaveResult res = Database.update(obj, false);

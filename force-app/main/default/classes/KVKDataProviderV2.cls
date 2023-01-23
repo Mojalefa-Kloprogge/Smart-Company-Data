@@ -101,12 +101,63 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
 
     private CoCProfile createCoCProfileFromKVKBasic(KVKBasic kvkBasic){
         CoCProfile profile = new CoCProfile();
-        profile.identifier = kvkBasic.kvkNummer;
-        profile.branchidentifier = kvkBasic.embedded?.hoofdvestiging?.vestigingsnummer;
+        if (kvkBasic.embedded.hoofdvestiging == null) {
+            profile = createCoCProfileFromKVKBasicEigenaar(kvkBasic);
+        } else {
+            profile.identifier = kvkBasic.kvkNummer;
+            profile.branchidentifier = kvkBasic.embedded?.hoofdvestiging?.vestigingsnummer;
+
+            if(kvkBasic.embedded?.hoofdvestiging?.adressen != null){
+                profile.addressMap = new Map<String, CoCAddress>();
+                for (KVKAdres kvkAdres : kvkBasic.embedded.hoofdvestiging.adressen) {
+                    CoCAddress cocAddress = new CoCAddress();
+                    cocAddress.city = kvkAdres.plaats;
+                    cocAddress.street = kvkAdres.straatnaam;
+                    if (kvkAdres.postcode.length() == 6) {
+                        cocAddress.postalCode = kvkAdres.postcode.substring(0, 4) + ' ' + kvkAdres.postcode.substring(4, 6);
+                    }
+                    cocAddress.houseNumber = String.valueOf(kvkAdres.huisnummer);
+                    cocAddress.houseNumberAddition = kvkAdres.huisnummerToevoeging;
+                    cocAddress.country = kvkAdres.land;
+                    cocAddress.name = kvkAdres.type;
+                    if (kvkAdres.geoData != null && kvkAdres.geoData.addresseerbaarObjectId != '') {
+                        cocAddress = insertBAGInformationInAddress(cocAddress, kvkAdres.geoData.addresseerbaarObjectId);
+                    }
+                    profile.addressMap.put(cocAddress.name, cocAddress);
+                }
+            }
+            if(kvkBasic.embedded?.hoofdvestiging?.eersteHandelsnaam != null){
+                profile.name = kvkBasic.embedded.hoofdvestiging.eersteHandelsnaam;
+            } else{
+                profile.name = kvkBasic.naam;
+            }
+            if (kvkBasic.handelsnamen != null) {
+                profile.tradeNames = new List<String>();
+                for (KVKHandelsnaam handelsnaam : kvkBasic.handelsnamen) {
+                    profile.tradeNames.add(handelsnaam.naam);
+                }
+            }
+            profile.isBranch = kvkBasic.embedded.hoofdvestiging.indCommercieleVestiging.equalsIgnoreCase('Ja');
+            profile.isMainBranch = kvkBasic.embedded.hoofdvestiging.indHoofdvestiging.equalsIgnoreCase('Ja');
+
+            if(kvkBasic.materieleRegistratie?.datumEinde != null){
+                profile.deregistrationDate = kvkBasic.materieleRegistratie.datumEinde;
+            }
+            profile.legalForm = kvkBasic.embedded.eigenaar.rechtsvorm;
+        }
+        return profile;
+    }
+
+    private CoCProfile createCoCProfileFromKVKBasicEigenaar(KVKBasic kvkBasic) {
+        CoCProfile profile = new CoCProfile();
+        profile.rsin = kvkBasic.embedded.eigenaar.rsin;
+        profile.legalForm = kvkBasic.embedded.eigenaar.rechtsvorm;
+        profile.extendedLegalform = kvkBasic.embedded.eigenaar.uitgebreideRechtsvorm; 
+        profile.name = kvkBasic.naam;
         
-        if(kvkBasic.embedded?.hoofdvestiging?.adressen != null){
+        if(kvkBasic.embedded.eigenaar.adressen != null){
             profile.addressMap = new Map<String, CoCAddress>();
-            for (KVKAdres kvkAdres : kvkBasic.embedded.hoofdvestiging.adressen) {
+            for (KVKAdres kvkAdres : kvkBasic.embedded.eigenaar.adressen) {
                 CoCAddress cocAddress = new CoCAddress();
                 cocAddress.city = kvkAdres.plaats;
                 cocAddress.street = kvkAdres.straatnaam;
@@ -120,26 +171,9 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
                 if (kvkAdres.geoData != null && kvkAdres.geoData.addresseerbaarObjectId != '') {
                     cocAddress = insertBAGInformationInAddress(cocAddress, kvkAdres.geoData.addresseerbaarObjectId);
                 }
-                profile.addressMap.put(cocAddress.name, cocAddress);
+                profile.addressMap.put('bezoekadres', cocAddress);
             }
         }
-        if(kvkBasic.embedded?.hoofdvestiging?.eersteHandelsnaam != null){
-            profile.name = kvkBasic.embedded.hoofdvestiging.eersteHandelsnaam;
-        }else{
-            profile.name = kvkBasic.naam;
-        }
-        if (kvkBasic.handelsnamen != null) {
-            profile.tradeNames = new List<String>();
-            for (KVKHandelsnaam handelsnaam : kvkBasic.handelsnamen) {
-                profile.tradeNames.add(handelsnaam.naam);
-            }
-        }
-        profile.isBranch = kvkBasic.embedded.hoofdvestiging.indCommercieleVestiging.equalsIgnoreCase('Ja');
-        profile.isMainBranch = kvkBasic.embedded.hoofdvestiging.indHoofdvestiging.equalsIgnoreCase('Ja');
-        if(kvkBasic.materieleRegistratie?.datumEinde != null){
-            profile.deregistrationDate = kvkBasic.materieleRegistratie.datumEinde;
-        }
-        profile.legalForm = kvkBasic.embedded.eigenaar.rechtsvorm;
         return profile;
     }
 
@@ -252,6 +286,8 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
     public class KVKEigenaar{
         String rechtsvorm;
         String uitgebreideRechtsvorm;
+        String rsin;
+        List<KVKAdres> adressen;
     }
 
     public class KVKVestiging{
