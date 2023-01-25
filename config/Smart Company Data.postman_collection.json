@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "bc89ee6f-9755-41e0-81e6-2d74712c13e0",
+		"name": "Smart Company Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21921240"
+	},
+	"item": [
+		{
+			"name": "Search by Term Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "739b85df-2de6-d5b2-69f4-3563e26d2ff5",
+						"type": "text"
+					},
+					{
+						"key": "x-org-id",
+						"value": "<Organization Id>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://smartcompanydata.herokuapp.com/api/companydata/prod/searchv2?handelsnaam=Conservatieve+Liberalen&inclusiefInactieveRegistraties=true&aantal=100",
+					"protocol": "https",
+					"host": [
+						"smartcompanydata",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"companydata",
+						"prod",
+						"searchv2"
+					],
+					"query": [
+						{
+							"key": "handelsnaam",
+							"value": "Conservatieve+Liberalen"
+						},
+						{
+							"key": "inclusiefInactieveRegistraties",
+							"value": "true"
+						},
+						{
+							"key": "aantal",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Basic Profile Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-org-id",
+						"value": "<Organization Id>",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "739b85df-2de6-d5b2-69f4-3563e26d2ff5",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://smartcompanydata.herokuapp.com/api/companydata/prod/basic/<kvk-nummer>",
+					"protocol": "https",
+					"host": [
+						"smartcompanydata",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"companydata",
+						"prod",
+						"basic",
+						"<kvk-nummer>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KVK - Zoeken API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "l7xx1f2691f2520d487b902f4e0b57a0b197",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.kvk.nl/test/api/v1/zoeken?handelsnaam=test&type=hoofdvestiging&plaats=Veendam&straatnaam=Rietdekkershof\n",
+					"protocol": "https",
+					"host": [
+						"api",
+						"kvk",
+						"nl"
+					],
+					"path": [
+						"test",
+						"api",
+						"v1",
+						"zoeken"
+					],
+					"query": [
+						{
+							"key": "handelsnaam",
+							"value": "test"
+						},
+						{
+							"key": "type",
+							"value": "hoofdvestiging"
+						},
+						{
+							"key": "plaats",
+							"value": "Veendam"
+						},
+						{
+							"key": "straatnaam",
+							"value": "Rietdekkershof\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KVK - Basisprofiel API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "l7xx1f2691f2520d487b902f4e0b57a0b197",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.kvk.nl/test/api/v1/basisprofielen/69599084",
+					"protocol": "https",
+					"host": [
+						"api",
+						"kvk",
+						"nl"
+					],
+					"path": [
+						"test",
+						"api",
+						"v1",
+						"basisprofielen",
+						"69599084"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KVK - Vestigingsprofiel API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "l7xx1f2691f2520d487b902f4e0b57a0b197",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.kvk.nl/test/api/v1/vestigingsprofielen/<vestigingsnummer>",
+					"protocol": "https",
+					"host": [
+						"api",
+						"kvk",
+						"nl"
+					],
+					"path": [
+						"test",
+						"api",
+						"v1",
+						"vestigingsprofielen",
+						"<vestigingsnummer>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KVK - Naamgeving API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "l7xx1f2691f2520d487b902f4e0b57a0b197",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.kvk.nl/test/api/v1/naamgevingen/kvknummer/<Kvk-nummer>",
+					"protocol": "https",
+					"host": [
+						"api",
+						"kvk",
+						"nl"
+					],
+					"path": [
+						"test",
+						"api",
+						"v1",
+						"naamgevingen",
+						"kvknummer",
+						"<Kvk-nummer>"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api",
+			"value": "739b85df-2de6-d5b2-69f4-3563e26d2ff5",
+			"type": "string"
+		},
+		{
+			"key": "orgId",
+			"value": "00DAU000000XeRj",
+			"type": "string"
+		}
+	]
+}
