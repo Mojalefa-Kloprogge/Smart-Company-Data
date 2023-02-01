@@ -223,19 +223,24 @@ public with sharing class KVKDataProviderV2 implements IDataProvider {
     }
 
     public CoCAddress insertBAGInformationInAddress(CoCAddress cocAddress, String bagId) {
-        Http http = new Http();
-        HttpResponse resp = http.send(createRequest(endpoint, environment, 'address', '?bagId=' + bagId));
+        HttpResponse resp = this.getResponseBAGCallout(bagId);
         String body = resp.getBody();
-
         BAGResponse parsedResp = (BAGResponse) JSON.deserialize(body.replace('_embedded', 'embedded'), BAGResponse.class);
-
         if (parsedResp.embedded != null && parsedResp.embedded.adressen.size() > 0) {
             BAGAddress bagAddress = parsedResp.embedded.adressen.get(0);
             if (bagAddress.woonplaatsNaam != null) {
-                cocAddress.city = bagAddress.woonplaatsNaam;
+            cocAddress.city = bagAddress.woonplaatsNaam;
             }
         }
         return cocAddress;
+    }
+
+    public HttpResponse getResponseBAGCallout(String bagId) {
+        HttpRequest req = createRequest(endpoint, environment, 'address', '?bagId=' + bagId);
+        Http http = new Http();
+        HttpResponse resp = http.send(req);
+        
+        return resp;
     }
 
     private HttpRequest createRequest(String endpoint, String environment, String method, String query) {
